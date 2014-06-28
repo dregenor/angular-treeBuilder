@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head >
+    <title></title>
+    <script src="tree-builder.min.js" type="application/javascript"></script>
+    <script src="test-app.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="style.css" type="text/css"> 
+    
+</head>
+<body >
+    <div class="content" ng-controller="main">
+        <div>Hello {{who}}</div>
+    
+        <div tb-tree-view tree-data="tree"></div>    
+    </div>
+</body>
+</html>

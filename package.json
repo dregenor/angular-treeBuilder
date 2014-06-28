@@ -1,0 +1,30 @@
+{
+  "name": "angular-treeBuilder",
+  "version": "0.0.1",
+  "description": "simple tree builder for angular",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dregenor/angular-treeBuilder.git"
+  },
+  "author": "dregenor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dregenor/angular-treeBuilder/issues"
+  },
+  "homepage": "https://github.com/dregenor/angular-treeBuilder",
+  "devDependencies": {
+    "browserify": "^4.2.0",
+    "gulp": "^3.8.5",
+    "gulp-browserify": "^0.5.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^0.3.1",
+    "run-sequence": "^0.3.6"
+  },
+  "dependencies": {
+    "angular": "^1.2.18"
+  }
+}
