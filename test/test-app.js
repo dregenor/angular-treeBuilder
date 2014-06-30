@@ -54,6 +54,13 @@ angular.module('app',['tree-builder'])
             
             console.log($scope.tree);
         },100);
+            
+        $scope.$on('tree-changed',function(){
+            $scope.tree.calcPositions({
+                x:200,
+                y:120
+            });    
+        });
         
         $scope.tree = null;
         $scope.who = "friend";

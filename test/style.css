@@ -17,6 +17,11 @@
     height: 80px;
     border: solid 1px #cccccc;
     top:100px;
+    -webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;
+    background: #ffffff;
+}
+.tb-tree-view_node:hover{
+    z-index: 100;
 }
 
 .tb-tree-view_node.expanded.has_childs:after{
@@ -33,23 +38,7 @@
 .node-root{
     margin-left: -100px;
 }
-.many-child:before,
-.node-child.has_childs:before,
-.node-child:before{
-    position: absolute;
-    content: "\2193";
-    display: block;
-    width: 0px;
-    height: 10px;
-    left:50%;
-    top: -12px;
-    text-align: center;
-    font-size: 14px;
-    margin-left: -4px;
-}
-.node-child.has_childs:before{
-    margin-top: -4px;
-}
+
 .has_childs{
     border: double 4px #444444 ;
 }
@@ -70,10 +59,6 @@
     height: 80px;
 }
 
-.many-child:before{
-    margin-top: -4px;
-}
-
 .node-layer{
     position: relative;
     margin-left: -4px;
@@ -84,10 +69,11 @@
     border-left: solid 1px #000000;   
     border-right: solid 1px #000000;   
     border-top: solid 1px #000000;   
+    pointer-events: none;
 }
 
 .many-child .connection-line{
-    height: 20px;
+    height: 30px;
     width: 0px;
     border-right-style:none ;
     border-left: 1px solid #000000;
@@ -97,4 +83,8 @@
 
 .node-block_title{
     position: absolute;
+}
+.node-block_description{
+    position: absolute;
+    top: 20px;
 }
