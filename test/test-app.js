@@ -31,7 +31,8 @@ angular.module('app',['tree-builder'])
         '$scope',
         '$timeout',
         'tree-builder.services.builder',
-        function($scope, $timeout, tBuilder){
+        'tree-builder.config',
+        function($scope, $timeout, tBuilder,config){
 
         
         //let's assume that the data come to us from the server asynchronously
@@ -47,10 +48,7 @@ angular.module('app',['tree-builder'])
             );
             
             
-            $scope.tree.calcPositions({
-                x:200,
-                y:120
-            });
+            $scope.tree.calcPositions(config.offset);
             
             console.log($scope.tree);
         },100);
