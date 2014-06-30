@@ -9,11 +9,17 @@
 </head>
 <body >
     <div class="content" ng-controller="main">
-        <div>Hello {{who}}</div>
-    
-        <div class="tb-tree-view">
-            <div class="node-root" tb-tree-view node="tree._treeRoot"></div>    
+        <div>Hello {{who}} {{val}}</div>
+        <div class="example-items">
+            <div tb-node ng-repeat="node in examples" node="node" 
+                 draggable="true" 
+                 effect-allowed="copy" 
+                 draggable-type="custom-object" 
+                 draggable-data="node"
+            ></div>
         </div>
+    
+        <div tb-tree-view2 tree="tree"></div>    
     </div>
 </body>
 </html>

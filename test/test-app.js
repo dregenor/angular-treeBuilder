@@ -1,43 +1,22 @@
 var mockupResponce = {
     total:10,
     data:[
-        {id:1,title:'Root',description:'it is root',parentId:null,expanded:true},
-        
-        {id:2,title:'fstLevelChild1',description:'it is root.child',parentId:1},
-        {id:3,title:'fstLevelChild2',description:'it is root.child',parentId:1},
-        {id:4,title:'fstLevelChild3',description:'it is root.child',parentId:1},
-        
-        {id:5,title:'fstLevelChild4',description:'it is fstLevelChild1.child',parentId:2},
-        {id:6,title:'secLevelChild1',description:'it is fstLevelChild1.child',parentId:2},
-        
-        {id:7,title:'secLevelChild2',description:'it is fstLevelChild2.child',parentId:3},
-        {id:8,title:'secLevelChild3',description:'it is fstLevelChild2.child',parentId:3},
-        
-        {id:9,title:'secLevelChild4',description:'it is fstLevelChild4.child',parentId:4},
-        {id:10,title:'secLevelChild5',description:'it is fstLevelChild4.child',parentId:4},
-        {id:11,title:'secLevelChild6',description:'it is fstLevelChild4.child',parentId:4},
-        {id:12,title:'secLevelChild7',description:'it is fstLevelChild4.child',parentId:4}
+        {id:1,val:1,class:'blue',parentId:null},
+        {id:2,val:0,class:'empty',parentId:1}
     ]
 };
 
-console.log(angular.module('tree-builder'));
-//
-//,
 angular.module('app',['tree-builder'])
     .run(['tree-builder.config',function(config){
-                config.limitOfVisibleChilds = 4;
+        config.limitOfVisibleChilds = 4;
     }])
     .controller('main',[
         '$scope',
         '$timeout',
         'tree-builder.services.builder',
-        'tree-builder.config',
-        function($scope, $timeout, tBuilder,config){
-
-        
+        'TreeNodeCalculator',
+        function($scope, $timeout, tBuilder,calculator){
         //let's assume that the data come to us from the server asynchronously
-        
-        
         $timeout(function(){
             // prepare data to tBuild
             $scope.tree = new tBuilder(
@@ -47,19 +26,34 @@ angular.module('app',['tree-builder'])
                 },{})
             );
             
-            
-            $scope.tree.calcPositions(config.offset);
-            
-            console.log($scope.tree);
+            $scope.calcPos = $scope.tree.calcPositions.bind($scope.tree,{x:100,y:100},{x:0,y:0});
+            $scope.calcPos();
+            $scope.$on('tree-changed',$scope.calcPos);
+            $scope.$on('tree-changed',$scope.calcVal);
         },100);
             
-        $scope.$on('tree-changed',function(){
-            $scope.tree.calcPositions({
-                x:200,
-                y:120
-            });    
-        });
-        
+        $scope.calcVal = function(){
+            $scope.val = calculator($scope.tree._treeRoot)
+        };
+            
+        $scope.startDrag = function(){};    
+            
+        $scope.examples = [];
+            
+            
+        var colors = ['blue','yellow','green','red'];
+        for(var i = 0; i < 10; i++ ){
+            var itm = {};
+            itm._y = Math.floor( i / 3) * 100;
+            itm._x = i % 3 * 100;
+            itm.class = colors[Math.floor(i/3)];
+            itm.val = i+1;
+            $scope.examples.push(itm);
+        }   
+            
+        $scope.createModel = function(item){
+            $scope.$dropmodel = angular.copy(item);
+        }    
+            
         $scope.tree = null;
-        $scope.who = "friend";
     }]);

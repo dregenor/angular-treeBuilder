@@ -1,4 +1,4 @@
-.tb-tree-view{
+.tb-tree-view2{
     position: absolute;
     left: 50%;
     right: 0;
@@ -8,83 +8,77 @@
     margin-top: 100px;
 }
 
-.tb-tree-view_node{
+.example-items{
     display: block;
-    font-size: 11px;
-    text-align: left;
     position: absolute;
-    width: 180px;
-    height: 80px;
-    border: solid 1px #cccccc;
-    top:100px;
-    -webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;
-    background: #ffffff;
-}
-.tb-tree-view_node:hover{
-    z-index: 100;
+    width: 300px;
+    height: 300px;
 }
 
-.tb-tree-view_node.expanded.has_childs:after{
+.tb-node{
     position: absolute;
-    content: "";
-    display: block;
-    width: 0px;
-    height: 10px;
-    border-right: solid 1px #000;
-    left:50%;
-    bottom: -10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
 }
 
-.node-root{
-    margin-left: -100px;
-}
-
-.has_childs{
-    border: double 4px #444444 ;
-}
-.many-child{
-    border: 4px #333;
-    border-style: double;
-    box-shadow: 2px 2px #333;
-    top:120px;
-}
-
-
-.many-child_count{
-    line-height: 80px;
-    font-size: 19px;
+.tb-node_value{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    font-size: 30px;
     text-align: center;
-    display: block;
-    width: 180px;
-    height: 80px;
+    font-family: "arial", sans-serif;
+    color: white;
 }
 
-.node-layer{
-    position: relative;
-    margin-left: -4px;
+.tb-node.blue{
+    background: blue;
+}
+
+.tb-node.green{
+    background: green;
+}
+
+.tb-node.yellow{
+    background: yellow;
+}
+
+.tb-node.red{
+    background: red;
+}
+.tb-node.empty{
+    background: gray;
+}
+
+.tb-tree-view2 .tb-node.blue:after,
+.tb-tree-view2 .tb-node.green:after,
+.tb-tree-view2 .tb-node.yellow:after,
+.tb-tree-view2 .tb-node.red:after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 20px;
+    border-right: 1px solid #000000;
+    position: absolute;
+    left: 50%;
+    top: 100%;
 }
 
 .connection-line{
+    border-top:1px solid #000;
+    border-left:1px solid #000;
+    border-right:1px solid #000;
+    bottom: 100%;
     position: absolute;
-    border-left: solid 1px #000000;   
-    border-right: solid 1px #000000;   
-    border-top: solid 1px #000000;   
-    pointer-events: none;
+    margin: 0 0 0 20px;
+    pointer-events:none;
 }
-
-.many-child .connection-line{
-    height: 30px;
-    width: 0px;
-    border-right-style:none ;
-    border-left: 1px solid #000000;
-    left:50%;
-    top: -34px;
-}
-
-.node-block_title{
-    position: absolute;
-}
-.node-block_description{
-    position: absolute;
-    top: 20px;
+.in-drag .connection-line,
+.in-drag.tb-node.blue:after,
+.in-drag.tb-node.green:after,
+.in-drag.tb-node.yellow:after,
+.in-drag.tb-node.red:after{
+    display: none;
 }
