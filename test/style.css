@@ -1,6 +1,6 @@
 .tb-tree-view{
     position: absolute;
-    left: 0;
+    left: 50%;
     right: 0;
     bottom: 0;
     top:0;
@@ -8,13 +8,93 @@
     margin-top: 100px;
 }
 
-.tb-tree-view_tree-node{
+.tb-tree-view_node{
     display: block;
-    width: 140px;
-    height: 40px;
-    position: absolute;
     font-size: 11px;
-    border: solid #cccccc 1px;
+    text-align: left;
+    position: absolute;
+    width: 180px;
+    height: 80px;
+    border: solid 1px #cccccc;
+    top:100px;
+}
+
+.tb-tree-view_node.expanded.has_childs:after{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 0px;
+    height: 10px;
+    border-right: solid 1px #000;
+    left:50%;
+    bottom: -10px;
+}
+
+.node-root{
+    margin-left: -100px;
+}
+.many-child:before,
+.node-child.has_childs:before,
+.node-child:before{
+    position: absolute;
+    content: "\2193";
+    display: block;
+    width: 0px;
+    height: 10px;
+    left:50%;
+    top: -12px;
     text-align: center;
-    padding: 10px;
+    font-size: 14px;
+    margin-left: -4px;
+}
+.node-child.has_childs:before{
+    margin-top: -4px;
+}
+.has_childs{
+    border: double 4px #444444 ;
+}
+.many-child{
+    border: 4px #333;
+    border-style: double;
+    box-shadow: 2px 2px #333;
+    top:120px;
+}
+
+
+.many-child_count{
+    line-height: 80px;
+    font-size: 19px;
+    text-align: center;
+    display: block;
+    width: 180px;
+    height: 80px;
+}
+
+.many-child:before{
+    margin-top: -4px;
+}
+
+.node-layer{
+    position: relative;
+    margin-left: -4px;
+}
+
+.connection-line{
+    position: absolute;
+    border-left: solid 1px #000000;   
+    border-right: solid 1px #000000;   
+    border-top: solid 1px #000000;   
+}
+
+.many-child .connection-line{
+    height: 20px;
+    width: 0px;
+    border-right-style:none ;
+    border-left: 1px solid #000000;
+    left:50%;
+    top: -34px;
+}
+
+.node-block_title{
+    position: absolute;
 }

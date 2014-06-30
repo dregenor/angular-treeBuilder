@@ -21,5 +21,5 @@ gulp.task('prepareTest',function(){
 });
 
 gulp.task('default',function(cb){
-    sequence(['browserify','prepareTest'],cb)
+    sequence('browserify','prepareTest',cb)
 });

@@ -1,26 +1,38 @@
 var mockupResponce = {
     total:10,
     data:[
-        {id:1,title:'Root',description:'it is root',parentId:null},
+        {id:1,title:'Root',description:'it is root',parentId:null,expanded:true},
         
         {id:2,title:'fstLevelChild1',description:'it is root.child',parentId:1},
         {id:3,title:'fstLevelChild2',description:'it is root.child',parentId:1},
         {id:4,title:'fstLevelChild3',description:'it is root.child',parentId:1},
-        {id:5,title:'fstLevelChild4',description:'it is root.child',parentId:1},
         
+        {id:5,title:'fstLevelChild4',description:'it is fstLevelChild1.child',parentId:2},
         {id:6,title:'secLevelChild1',description:'it is fstLevelChild1.child',parentId:2},
+        
         {id:7,title:'secLevelChild2',description:'it is fstLevelChild2.child',parentId:3},
         {id:8,title:'secLevelChild3',description:'it is fstLevelChild2.child',parentId:3},
-        {id:9,title:'secLevelChild4',description:'it is fstLevelChild4.child',parentId:5},
-        {id:10,title:'secLevelChild5',description:'it is fstLevelChild4.child',parentId:5}
+        
+        {id:9,title:'secLevelChild4',description:'it is fstLevelChild4.child',parentId:4},
+        {id:10,title:'secLevelChild5',description:'it is fstLevelChild4.child',parentId:4},
+        {id:11,title:'secLevelChild6',description:'it is fstLevelChild4.child',parentId:4},
+        {id:12,title:'secLevelChild7',description:'it is fstLevelChild4.child',parentId:4}
     ]
 };
 
 console.log(angular.module('tree-builder'));
 //
 //,
-angular.module('app',['tree-builder']).
-    controller('main',['$scope','$timeout','tree-builder.services.builder',function($scope, $timeout, tBuilder){
+angular.module('app',['tree-builder'])
+    .run(['tree-builder.config',function(config){
+                config.limitOfVisibleChilds = 4;
+    }])
+    .controller('main',[
+        '$scope',
+        '$timeout',
+        'tree-builder.services.builder',
+        function($scope, $timeout, tBuilder){
+
         
         //let's assume that the data come to us from the server asynchronously
         
@@ -33,6 +45,8 @@ angular.module('app',['tree-builder']).
                     return tail;
                 },{})
             );
+            
+            
             $scope.tree.calcPositions({
                 x:200,
                 y:120

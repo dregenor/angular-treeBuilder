@@ -11,7 +11,9 @@
     <div class="content" ng-controller="main">
         <div>Hello {{who}}</div>
     
-        <div tb-tree-view tree-data="tree"></div>    
+        <div class="tb-tree-view">
+            <div class="node-root" tb-tree-view node="tree._treeRoot"></div>    
+        </div>
     </div>
 </body>
 </html>
