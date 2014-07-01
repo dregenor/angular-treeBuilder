@@ -28,13 +28,32 @@ angular.module('app',['tree-builder'])
             
             $scope.calcPos = $scope.tree.calcPositions.bind($scope.tree,{x:100,y:100},{x:0,y:0});
             $scope.calcPos();
-            $scope.$on('tree-changed',$scope.calcPos);
-            $scope.$on('tree-changed',$scope.calcVal);
+            $scope.$on('tree-changed',function(){
+                $scope.tree.cleanDeadNodes();
+                $scope.calcVal();
+                $scope.restoreEmpty();
+                $scope.calcPos();
+            });
         },100);
             
         $scope.calcVal = function(){
             $scope.val = calculator($scope.tree._treeRoot)
         };
+            
+        $scope.restoreEmpty = function(){
+            $scope.tree.makeFinishNode({
+                val:0,
+                class:'empty'
+            },function(elem){
+                if (elem.class === 'green'){
+                    return  elem._childs.length < 2;
+                } else if( elem.class === 'empty' ){
+                    return false;
+                } else {
+                    return  elem._childs.length < 1;
+                }
+            });
+        };    
             
         $scope.startDrag = function(){};    
             
