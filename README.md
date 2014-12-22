@@ -1,4 +1,4 @@
-angular-treeBuilder
+angular-treeBuilder test example
 ===================
 
 it example of test realisations 
